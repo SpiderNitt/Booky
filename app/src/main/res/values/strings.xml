@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">Booky</string>
+    <string name="title_activity_sellermain">sellermain</string>
 </resources>
