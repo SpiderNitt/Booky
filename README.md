@@ -19,8 +19,8 @@ A platform to buy and sell books
 <li>Buyer map 1 : Display Sellers of a <strong>chosen Book</strong></li>
 <li>Buyer map 2 : Display <strong>all sellers</strong></li>
 <li>Buyer map 3 : Display all the nearby <strong>shops</strong></li>
-<li>Seller details : Displaying the details of the seller once chosen from map 2</li>
-<li>Book details : Displaying the details of the book once chosen from map 1, containing seller details too</li>
+<li><strike>Seller details : Displaying the details of the seller once chosen from map 2</strike></li>
+<li><strike>Book details : Displaying the details of the book once chosen from map 1, containing seller details too</strike></li>
 <li>Adding markers to suggest new shops in map 3</li>
 </ul>
 
@@ -54,9 +54,20 @@ A platform to buy and sell books
     <th>Edition</th>
     <th>Price</th>
     <th>Picture</th>
+    <th>NoOfBooks</th>
   </tr>
 </table>
-
+<h4>Book stores table:</h4>
+<table style="width:100%">
+  <tr>
+    <th>Name</th>
+    <th>Latitude</th>
+    <th>Longitude</th>
+    <th>Pic</th>
+    <th>Address</th>
+    <th>Phone</th>
+  </tr>
+</table>
 <h3>Build Instructions :</h3>
 <ul>
 <li>Fork this repo</li>
