@@ -91,4 +91,29 @@
         android:layout_alignParentStart="true"
         android:textColor="#000000" />
 
+    <!--TESTING BUTTONS_________________________
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Book info"
+        android:id="@+id/check"
+        android:layout_marginTop="30dp"
+        android:onClick="check"
+        android:layout_below="@+id/login"
+        android:layout_alignLeft="@+id/login"
+        android:layout_alignStart="@+id/login"
+        android:layout_centerHorizontal="true" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Seller Info"
+        android:id="@+id/seller"
+        android:layout_below="@+id/check"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="42dp"
+        android:onClick="seller" />
+
+        -->
+
 </RelativeLayout>

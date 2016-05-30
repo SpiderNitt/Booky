@@ -1,5 +1,9 @@
 package spider.project.booky;
 
+import android.content.Context;
+import android.content.Intent;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -25,6 +29,9 @@ import java.io.OutputStreamWriter;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
+import spider.project.booky.seller.FinalBookInfo;
+import spider.project.booky.seller.SellerInfo;
+
 public class MainActivity extends AppCompatActivity {
     private JSONObject userObj = null;
     private String urlString = "<YOUR URL>";
@@ -38,15 +45,17 @@ public class MainActivity extends AppCompatActivity {
         showP = (CheckBox) findViewById(R.id.showP);
         webmail = (EditText) findViewById(R.id.webmail);
         password = (EditText) findViewById(R.id.password);
-        showP.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                if(!isChecked)
-                    password.setTransformationMethod(PasswordTransformationMethod.getInstance());
-                else
-                    password.setTransformationMethod(HideReturnsTransformationMethod.getInstance());
-            }
-        });
+        if(showP != null) {
+            showP.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+                @Override
+                public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                    if (!isChecked)
+                        password.setTransformationMethod(PasswordTransformationMethod.getInstance());
+                    else
+                        password.setTransformationMethod(HideReturnsTransformationMethod.getInstance());
+                }
+            });
+        }
     }
 
     public void login(View v) throws JSONException {
@@ -56,20 +65,40 @@ public class MainActivity extends AppCompatActivity {
             if (password.getText().toString().trim().length() == 0)
                 Toast.makeText(this, "Password field is empty !", Toast.LENGTH_SHORT).show();
             else {
-                String user = webmail.getText().toString();
-                user += "@nitt.edu";
-                String pass = password.getText().toString();
+                ConnectivityManager connMgr = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+                NetworkInfo networkInfo = connMgr.getActiveNetworkInfo();
+                if (networkInfo != null && networkInfo.isConnected()) {
+                    String user = webmail.getText().toString();
+                    user += "@nitt.edu";
+                    String pass = password.getText().toString();
 
-                /*---------------------------------------------
-                The following JSON object is POSTed to the server :
-                 ------------------------------------------------*/
-                userObj = new JSONObject();
-                userObj.put("webmail", user);
-                userObj.put("password", pass);
-                new JSONPost().execute();
+                    /*---------------------------------------------
+                    The following JSON object is POSTed to the server :
+                    ------------------------------------------------*/
+                    userObj = new JSONObject();
+                    userObj.put("webmail", user);
+                    userObj.put("password", pass);
+                    new JSONPost().execute();
+                }
+                else
+                    Toast.makeText(this,"No Internet Connection",Toast.LENGTH_SHORT).show();
             }
         }
     }
+
+    /*
+    INTENTS FOR TESTING________________________________
+
+    public void check(View v){
+        Intent checkIntent = new Intent(this,FinalBookInfo.class);
+        startActivity(checkIntent);
+    }
+    public void seller(View v){
+        Intent sellerIntent = new Intent(this, SellerInfo.class);
+        startActivity(sellerIntent);
+    }
+
+    */
 
     private class JSONPost extends AsyncTask<Void, Void, JSONObject> {
         private ProgressBar spinner;
@@ -136,7 +165,7 @@ public class MainActivity extends AppCompatActivity {
         protected void onPostExecute(JSONObject object) {
             spinner.setVisibility(View.INVISIBLE);
             if (object == null)
-                Toast.makeText(getApplicationContext(), "JSONObject is null", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(), "Error during login", Toast.LENGTH_SHORT).show();
         }
     }
 }
