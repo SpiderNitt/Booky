@@ -20,7 +20,7 @@ import android.widget.Toast;
 
 import spider.project.booky.R;
 
-public class SellerForm extends AppCompatActivity implements LocationListener {
+public class SellingBookForm extends AppCompatActivity implements LocationListener {
 
     EditText name, phone, bname, aname, edi, pric, sub, num;
     String nam, phon, bookname, authorname, edition, price, subject, numberofbooks;
@@ -31,10 +31,11 @@ public class SellerForm extends AppCompatActivity implements LocationListener {
     LocationListener locationListener;
     boolean gps_enabled, network_enabled;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_seller_form);
+        setContentView(R.layout.activity_sellingbook_form);
         name = (EditText) findViewById(R.id.name);
         phone = (EditText) findViewById(R.id.phonenumber);
         bname = (EditText) findViewById(R.id.bookname);
@@ -47,6 +48,7 @@ public class SellerForm extends AppCompatActivity implements LocationListener {
     }
 
     public void submit(View v) {
+        //TODO: Validate if all fields are proper using RxJava
         nam = name.getText().toString();
         phon = phone.getText().toString();
         bookname = bname.getText().toString();
@@ -56,6 +58,7 @@ public class SellerForm extends AppCompatActivity implements LocationListener {
         subject = sub.getText().toString();
         numberofbooks = num.getText().toString();
         rating = r.getRating();
+        //TODO: Add this object into the SellingBook model class and retrofit it
         MyAsyncTask task = new MyAsyncTask();
         task.execute("");//url
 
@@ -68,11 +71,11 @@ public class SellerForm extends AppCompatActivity implements LocationListener {
         locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
         provider = LocationManager.GPS_PROVIDER;
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-            Toast.makeText(SellerForm.this, "Give GPS permissions", Toast.LENGTH_SHORT).show();
+            Toast.makeText(SellingBookForm.this, "Give GPS permissions", Toast.LENGTH_SHORT).show();
 
 
         } else {
-            locationManager.requestLocationUpdates(provider, 5000, 0, SellerForm.this, Looper.getMainLooper());
+            locationManager.requestLocationUpdates(provider, 5000, 0, SellingBookForm.this, Looper.getMainLooper());
             location = locationManager.getLastKnownLocation(provider);
             if(location!=null)
             {
@@ -82,7 +85,7 @@ public class SellerForm extends AppCompatActivity implements LocationListener {
             }
             else{
                 locationManager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER,5000,0,
-                        SellerForm.this,Looper.getMainLooper());
+                        SellingBookForm.this,Looper.getMainLooper());
                 location=locationManager.getLastKnownLocation(LocationManager.NETWORK_PROVIDER);
                 if(location!=null)
                     onLocationChanged(location);
@@ -116,7 +119,7 @@ public class SellerForm extends AppCompatActivity implements LocationListener {
 
     class MyAsyncTask extends AsyncTask<String, String, Void> {
 
-        private ProgressDialog progressDialog = new ProgressDialog(SellerForm.this);
+        private ProgressDialog progressDialog = new ProgressDialog(SellingBookForm.this);
 
 
         protected void onPreExecute() {
@@ -149,7 +152,7 @@ public class SellerForm extends AppCompatActivity implements LocationListener {
 
         protected void onPostExecute(Void v) {
             progressDialog.dismiss();
-            Toast.makeText(SellerForm.this, "Submitted succesfully", Toast.LENGTH_SHORT).show();
+            Toast.makeText(SellingBookForm.this, "Submitted succesfully", Toast.LENGTH_SHORT).show();
         }
     }
 }

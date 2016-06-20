@@ -29,22 +29,24 @@ import java.io.OutputStreamWriter;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
 import spider.project.booky.seller.FinalBookInfo;
 import spider.project.booky.seller.SellerInfo;
 
 public class MainActivity extends AppCompatActivity {
     private JSONObject userObj = null;
     private String urlString = "<YOUR URL>";
-    CheckBox showP = null;
-    EditText password = null;
-    EditText webmail = null;
+    //TODO: Change this activity to register new user, and have a link to login if already a user
+
+    @BindView(R.id.showP) CheckBox showP = null;
+    @BindView(R.id.password) EditText password = null;
+    @BindView(R.id.webmail) EditText webmail = null;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        showP = (CheckBox) findViewById(R.id.showP);
-        webmail = (EditText) findViewById(R.id.webmail);
-        password = (EditText) findViewById(R.id.password);
+        ButterKnife.bind(this);
         if(showP != null) {
             showP.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
                 @Override
@@ -59,6 +61,8 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void login(View v) throws JSONException {
+
+
         if (webmail.getText().toString().trim().length() == 0)
             Toast.makeText(this, "webmail field is empty !", Toast.LENGTH_SHORT).show();
         else {

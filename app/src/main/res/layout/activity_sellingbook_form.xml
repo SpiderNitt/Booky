@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#000000"
-    tools:context="spider.project.booky.seller.SellerForm">
+    tools:context=".seller.SellingBookForm">
 
     <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
@@ -16,7 +16,7 @@
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
             android:background="#ffffff">
-
+<!--TODO: Remove name and phone number from here-->
             <EditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

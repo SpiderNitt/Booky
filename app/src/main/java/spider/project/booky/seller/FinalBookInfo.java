@@ -34,6 +34,8 @@ public class FinalBookInfo extends AppCompatActivity {
     private Integer images [] = {R.drawable.ashe_stad,R.drawable.fed_serve,R.drawable.kabali_1,R.drawable.kabali_2,R.drawable.kabali_3,R.drawable.mata2,R.drawable.mata_fk};
     private LinearLayout imageGallery;
 
+    //TODO: Use Android binding to directly display values without BoilerPlate
+
     @Override
     protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
