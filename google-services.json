@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "805336237159",
+    "firebase_url": "https://booky-fdbdb.firebaseio.com",
+    "project_id": "booky-fdbdb",
+    "storage_bucket": "booky-fdbdb.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:805336237159:android:53a17bb0b5670cdb",
+        "android_client_info": {
+          "package_name": "spider.project.booky"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "805336237159-jov6i51mnnlq26q2oanrnrq65lm29kc2.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "spider.project.booky",
+            "certificate_hash": "00EAF9BF4D6606AC567E6B6909A736246A2040C3"
+          }
+        },
+        {
+          "client_id": "805336237159-ohg2hds71msomj3vot0q79s483bsisfu.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBNclCpjkV24goQsHZybvl7jOS_KBth6BY"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "805336237159-ohg2hds71msomj3vot0q79s483bsisfu.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
